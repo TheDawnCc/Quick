@@ -61,9 +61,11 @@ namespace Froser.Quick
 
         public void Run()
         {
+            // Ctrl+Q热键注册事件
             m_quickHotkey.RegisterHotkey(QuickConfig.ThisConfig.QuickHotKey, (Hotkey.KeyFlags)QuickConfig.ThisConfig.QuickHotKeyFlags);
             m_quickHotkey.OnHotkey += QuickHotkey_OnHotkey;
 
+            // Ctrl+`热键注册事件
             m_contextHotkey.RegisterHotkey(QuickConfig.ThisConfig.ContextMenuHotKey, (Hotkey.KeyFlags)QuickConfig.ThisConfig.ContextMenuHotKeyFlags);
             m_contextHotkey.OnHotkey += ContextHotkey_OnHotkey;
         }
@@ -234,6 +236,10 @@ namespace Froser.Quick
             m_quickMainWindow.SetBackgroundColor(bgColor);
         }
 
+        /// <summary>
+        /// 检测是否存在多个进程
+        /// </summary>
+        /// <param name="processName">进程名</param>
         private void Validate(String processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);

@@ -141,7 +141,15 @@ namespace Froser.Quick.UI
                     InvokeCommand();
                     break;
                 case Key.Down:
-                    m_hostWindow.SelectNext();
+                case Key.Tab:
+                    if (e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+                    {
+                        m_hostWindow.SelectPrevious();
+                    }
+                    else
+                    {
+                        m_hostWindow.SelectNext();
+                    }
                     break;
                 case Key.Up:
                     m_hostWindow.SelectPrevious();

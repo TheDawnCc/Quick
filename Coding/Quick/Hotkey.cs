@@ -40,6 +40,12 @@ namespace Froser.Quick
             global::System.Windows.Forms.Application.AddMessageFilter(this);
         }
 
+        /// <summary>
+        /// 注册热键
+        /// </summary>
+        /// <param name="Key"></param>
+        /// <param name="keyflags"></param>
+        /// <returns></returns>
         public int RegisterHotkey(Key Key, KeyFlags keyflags)
         {
             try
@@ -53,6 +59,9 @@ namespace Froser.Quick
             catch { return 0; };
         }
 
+        /// <summary>
+        /// 取消注册热键
+        /// </summary>
         public void UnregisterHotkeys()
         {
             global::System.Windows.Forms.Application.RemoveMessageFilter(this);
@@ -63,6 +72,11 @@ namespace Froser.Quick
             }
         }
 
+        /// <summary>
+        /// 处理Windows热键消息
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public bool PreFilterMessage(ref global::System.Windows.Forms.Message m)
         {
             if (m.Msg == 0x312)
