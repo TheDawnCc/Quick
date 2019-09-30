@@ -6,12 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Froser.Quick.UI
 {
-    class QuickContextWindowHandler : IQuickContextWindowHandler
+    public class QuickContextWindowHandler : IQuickContextWindowHandler
     {
+        /// <summary>
+        /// 获取鼠标位置
+        /// </summary>
+        /// <param name="lpPoint"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
         public static extern bool GetCursorPos(ref Point lpPoint);
 
@@ -30,14 +37,50 @@ namespace Froser.Quick.UI
                 item.CreateListBoxItemTo(list);
             }
             list.ListItemClicked += itemClicked;
+
+
+            m_host.GetList().KeyUp+= ListOnKeyUp;
         }
 
+        /// <summary>
+        /// 释放按键时触发配置事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListOnKeyUp(object sender, KeyEventArgs e)
+        {
+            Debug.WriteLine($"KeyUp {e.Key} {e.SystemKey} {e.KeyboardDevice.Modifiers}");
+
+            if (e.Key == Key.Oem3)
+            {
+                m_host.SelectNext();
+            }
+            else if (e.Key == Key.LeftCtrl)
+            {
+                ItemFire(m_host.GetList().SelectedItem);
+            }
+        }
+
+        /// <summary>
+        /// 选项点击触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void itemClicked(object sender, EventArgs e)
         {
-            ListBoxItem listItem = (ListBoxItem)sender;
-            QuickListItem rawItem = (QuickListItem)listItem.Tag;
-            var menuItem = (QuickConfig.ContextMenuItem)rawItem.Tag;
-            string concreteCmd = menuItem.Exec.Replace(QuickConfig.ContextMenuItem.Replacement, m_context.ToString());
+            ItemFire(sender);
+        }
+
+        /// <summary>
+        /// 选项触发事件
+        /// </summary>
+        /// <param name="item"></param>
+        public void ItemFire(object item)
+        {
+            ListBoxItem listBoxItem = item as ListBoxItem;
+            QuickListItem rawItem = listBoxItem.Tag as QuickListItem;
+            var menuItem = rawItem.Tag as QuickConfig.ContextMenuItem;
+            string concreteCmd = menuItem.Exec.Replace(QuickConfig.ContextMenuItem.Replacement, m_context);
             Process.Start(concreteCmd, menuItem.Argument);
         }
 

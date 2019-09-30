@@ -79,7 +79,7 @@ namespace Froser.Quick
         /// <returns></returns>
         public bool PreFilterMessage(ref global::System.Windows.Forms.Message m)
         {
-            if (m.Msg == 0x312)
+            if (m.Msg == 0x312) //触发WM_HOTKEY
             {
                 if (OnHotkey != null)
                 {

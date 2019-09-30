@@ -11,8 +11,19 @@ namespace Froser.Quick
 {
     internal class QuickListener
     {
+        /// <summary>
+        /// 返回前台窗口的句柄
+        /// </summary>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
+
+        /// <summary>
+        /// 返回创建窗口的进程/线程
+        /// </summary>
+        /// <param name="hwnd"></param>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern int GetWindowThreadProcessId(IntPtr hwnd, out int ID);
 
@@ -34,6 +45,7 @@ namespace Froser.Quick
 
         public void Init()
         {
+            //TODO:配置文件会被覆盖问题
             QuickConfig.ThisConfig.Reload();
             QuickConfig.ThisConfig.CurrentVersion = Application.ProductVersion;
             QuickConfig.ThisConfig.TrySave();
@@ -65,6 +77,7 @@ namespace Froser.Quick
             m_quickHotkey.RegisterHotkey(QuickConfig.ThisConfig.QuickHotKey, (Hotkey.KeyFlags)QuickConfig.ThisConfig.QuickHotKeyFlags);
             m_quickHotkey.OnHotkey += QuickHotkey_OnHotkey;
 
+            //TODO:释放按键就触发事件
             // Ctrl+`热键注册事件
             m_contextHotkey.RegisterHotkey(QuickConfig.ThisConfig.ContextMenuHotKey, (Hotkey.KeyFlags)QuickConfig.ThisConfig.ContextMenuHotKeyFlags);
             m_contextHotkey.OnHotkey += ContextHotkey_OnHotkey;
@@ -90,8 +103,12 @@ namespace Froser.Quick
                     var textObject = QuickReflection.Invoke(m_currentModel.Search, obj);
                     if (textObject != null)
                     {
-                        m_quickContextWindow.Show(textObject.ToString ());
+                        m_quickContextWindow.Show(textObject.ToString());
+                        m_quickContextWindow.Activate();
+                        m_quickContextWindow.GetList().Focus();
                         QuickVitality.UpdateVitality("context", m_currentModel.ProgramName, textObject.ToString());
+
+                        Debug.WriteLine("test");
                     }
                 }
             }

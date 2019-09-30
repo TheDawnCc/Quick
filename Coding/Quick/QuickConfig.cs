@@ -77,8 +77,7 @@ namespace Froser.Quick
                 ModelName.Add("powerpnt");
 
                 ContextMenuList = new List<ContextMenuItem>();
-                ContextMenuList.Add(new ContextMenuItem("用BugManager搜索", "http://wpswebsvr.wps.kingsoft.net/ksbm/ViewIssue.aspx?IssueID={$1}", ""));
-                ContextMenuList.Add(new ContextMenuItem("用Google搜索", "https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl#newwindow=1&safe=strict&hl=zh-CN&q={$1}", ""));
+                ContextMenuList.Add(new ContextMenuItem("用Google搜索", "https://www.google.com/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl#newwindow=1&safe=strict&hl=zh-CN&q={$1}", ""));
                 ContextMenuList.Add(new ContextMenuItem("用Baidu搜索", "http://www.baidu.com/baidu?wd={$1}", ""));
             }
         }
@@ -99,6 +98,9 @@ namespace Froser.Quick
             LockWindow = false;
         }
 
+        /// <summary>
+        /// 设置默认配置
+        /// </summary>
         public void SetDefaultConfig()
         {
             QuickHotKey = Key.Q;
@@ -108,8 +110,7 @@ namespace Froser.Quick
             ContextMenuToogle = true;
 
             ContextMenuList = new List<ContextMenuItem>();
-            ContextMenuList.Add(new ContextMenuItem("用BugManager搜索", "http://wpswebsvr.wps.kingsoft.net/ksbm/ViewIssue.aspx?IssueID={$1}", ""));
-            ContextMenuList.Add(new ContextMenuItem("用Google搜索", "https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl#newwindow=1&safe=strict&hl=zh-CN&q={$1}", ""));
+            ContextMenuList.Add(new ContextMenuItem("用Google搜索", "https://www.google.com/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl#newwindow=1&safe=strict&hl=zh-CN&q={$1}", ""));
             ContextMenuList.Add(new ContextMenuItem("用Baidu搜索", "http://www.baidu.com/baidu?wd={$1}", ""));
         }
 
