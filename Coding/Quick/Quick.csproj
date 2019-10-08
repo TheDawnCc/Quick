@@ -241,7 +241,8 @@ copy /y $(OutDir)..\Debug4KSO\plugins\3rdparty\everything\everything32.dll $(Out
 copy /y $(OutDir)..\Debug4KSO\plugins\3rdparty\everything\everything64.dll $(OutDir)plugins\3rdparty\everything\everything64.dll
 )
 
-xcopy /e /y /i $(OutDir)..\..\ConfigCommon\__global.xml $(OutDir)config\__global.xml</PreBuildEvent>
+xcopy /e /y /i $(OutDir)..\..\ConfigCommon\__global.xml $(OutDir)config\__global.xml
+xcopy /e /y /i $(OutDir)..\..\ConfigCommon\quick.config $(OutDir)quick.config</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
