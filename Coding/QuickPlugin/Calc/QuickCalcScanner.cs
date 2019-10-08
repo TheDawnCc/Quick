@@ -9,7 +9,9 @@ namespace Froser.Quick.Plugins.Calc
     {
         private enum DFAState { Start, InId, InInt, InDecimal, InHex, InSym, InCmp, Error }
         private static readonly string[] KEYWORDS = new string[] { "sin", "cos", "tan", "asin", "acos", "atan", "sqrt", "ln", "abs" };
-        private static readonly char[] ALL_AVAILABLE_OP = new char[] { '+', '-', '*', '/', '(', ')', '=', '^', ',', '>', '<', '!', '&', '|' };
+
+        private static readonly char[] ALL_AVAILABLE_OP = new char[]
+            {'+', '-', '*', '/', '(', ')', '=', '^', ',', '>', '<', '!', '&', '|', '%'};
         private static readonly char[] ALL_COMPARE_OP = { '>', '<', '=', '!', '&', '|' };
 
         public QuickCalcScanner()

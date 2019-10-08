@@ -186,7 +186,7 @@ namespace Froser.Quick.Plugins.Calc
         {
             double result = Stmt_power();
             while (m_parseProgress < m_symbolList.Count() && 
-                (m_symbolList[m_parseProgress] == "*" || m_symbolList[m_parseProgress] == "/"))
+                (m_symbolList[m_parseProgress] == "*" || m_symbolList[m_parseProgress] == "/" || m_symbolList[m_parseProgress]=="%"))
             {
                 if (m_symbolList[m_parseProgress] == "*")
                 {
@@ -197,6 +197,11 @@ namespace Froser.Quick.Plugins.Calc
                 {
                     Match("/");
                     result /= Stmt_power();
+                }
+                else if (m_symbolList[m_parseProgress] == "%")
+                {
+                    Match("%");
+                    result %= Stmt_power();
                 }
             }
 
