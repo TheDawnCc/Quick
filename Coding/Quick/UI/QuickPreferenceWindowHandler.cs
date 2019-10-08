@@ -67,9 +67,9 @@ namespace Froser.Quick.UI
                 m_currentModel.Save(filename);
                 QuickListener.Listener.Reload();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: 在这里处理异常
+                MessageBox.Show(ex.Message);
             }
         }
 

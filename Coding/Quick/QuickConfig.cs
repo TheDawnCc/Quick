@@ -78,7 +78,7 @@ namespace Froser.Quick
 
                 ContextMenuList = new List<ContextMenuItem>();
                 ContextMenuList.Add(new ContextMenuItem("用Google搜索", "https://www.google.com/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl#newwindow=1&safe=strict&hl=zh-CN&q={$1}", ""));
-                ContextMenuList.Add(new ContextMenuItem("用Baidu搜索", "http://www.baidu.com/baidu?wd={$1}", ""));
+                ContextMenuList.Add(new ContextMenuItem("用Baidu搜索", "https://www.baidu.com/baidu?wd={$1}", ""));
             }
         }
 
@@ -111,7 +111,7 @@ namespace Froser.Quick
 
             ContextMenuList = new List<ContextMenuItem>();
             ContextMenuList.Add(new ContextMenuItem("用Google搜索", "https://www.google.com/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl#newwindow=1&safe=strict&hl=zh-CN&q={$1}", ""));
-            ContextMenuList.Add(new ContextMenuItem("用Baidu搜索", "http://www.baidu.com/baidu?wd={$1}", ""));
+            ContextMenuList.Add(new ContextMenuItem("用Baidu搜索", "https://www.baidu.com/baidu?wd={$1}", ""));
         }
 
         public bool TrySave()

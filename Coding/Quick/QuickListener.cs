@@ -77,7 +77,6 @@ namespace Froser.Quick
             m_quickHotkey.RegisterHotkey(QuickConfig.ThisConfig.QuickHotKey, (Hotkey.KeyFlags)QuickConfig.ThisConfig.QuickHotKeyFlags);
             m_quickHotkey.OnHotkey += QuickHotkey_OnHotkey;
 
-            //TODO:释放按键就触发事件
             // Ctrl+`热键注册事件
             m_contextHotkey.RegisterHotkey(QuickConfig.ThisConfig.ContextMenuHotKey, (Hotkey.KeyFlags)QuickConfig.ThisConfig.ContextMenuHotKeyFlags);
             m_contextHotkey.OnHotkey += ContextHotkey_OnHotkey;
