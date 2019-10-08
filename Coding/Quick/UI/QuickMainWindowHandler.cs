@@ -662,6 +662,7 @@ namespace Froser.Quick.UI
             //将{$1}、{$2}、{$n}以实际的参数代替
             //将{$_}替换为，以引号包围、逗号分隔的长串字符
             //将{$!}替换为，"replacement[0]","replacement[rest]"形式的字符串
+            //将{$*}替换为, 以空格分割的所有参数的字符串
             if (replacement == null) return script;
             StringBuilder stringArgs = new StringBuilder();
             if (script.Contains("{$_}"))
@@ -691,6 +692,11 @@ namespace Froser.Quick.UI
                 if (prefix) stringArgs.Remove(stringArgs.Length - 1, 1);
                 stringArgs.Append("\"");
                 script = script.Replace("{$!}", stringArgs.ToString());
+            }
+            else if (script.Contains("{$*}"))
+            {
+                string args = string.Join(" ", replacement);
+                script = script.Replace("{$*}", args);
             }
 
             for (int i = 0; i < replacement.Length; i++)
